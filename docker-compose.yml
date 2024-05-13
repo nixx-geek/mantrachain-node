@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  mantra-node:
+    image: mantra-full-node
+    container_name: mantra-node
+    environment:
+      # Cosmovisor environment variables
+      DAEMON_NAME: "mantrachaind"
+      DAEMON_HOME: "/root/.mantrachain"
+      DAEMON_DATA_BACKUP_DIR: "/root/.mantrachain/cosmovisor/data_backup"
+    volumes:
+      - mantrachain-data:/root/.mantrachain
+    ports:
+      - "26700:26656"  # Expose the p2p port, change if different ports are used
+    restart: unless-stopped
+
+volumes:
+  mantrachain-data:
+    name: mantrachain-data
