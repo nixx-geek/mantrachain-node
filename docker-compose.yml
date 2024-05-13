@@ -4,6 +4,9 @@ services:
   mantra-node:
     image: mantra-full-node
     container_name: mantra-node
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       # Cosmovisor environment variables
       DAEMON_NAME: "mantrachaind"
